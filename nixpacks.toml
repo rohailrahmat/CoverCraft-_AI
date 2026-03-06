@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["python311", "gcc"]
+
+[start]
+cmd = "gunicorn app:app"
+```
+
+Then push to GitHub:
+```
+git add .
+git commit -m "fix nixpacks python version"
+git push
