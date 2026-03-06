@@ -1,0 +1,26 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="openai" />
+          <option value="reportlab" />
+          <option value="PyPDF2" />
+          <option value="pdfkit" />
+          <option value="selenium" />
+          <option value="webdriver-manager" />
+          <option value="beautifulsoup4" />
+          <option value="lxml" />
+          <option value="python-dotenv" />
+          <option value="markdown2" />
+          <option value="sqlalchemy" />
+          <option value="email-validator" />
+          <option value="stripe" />
+          <option value="schedule" />
+          <option value="tqdm" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
