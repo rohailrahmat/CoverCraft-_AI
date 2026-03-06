@@ -1,13 +1,12 @@
 import os
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 from google import genai
 
-load_dotenv()
-
 app = Flask(__name__)
 
-client = genai.Client(api_key=os.environ.get("AIzaSyBMGNrLURoJAzMmIClnAKYa1wtcxoJqar4"))
+GEMINI_API_KEY = "AIzaSyCOJwHdGezK6s-KZ5Akx9-WC5ZAJ4qWPXU"
+
+client = genai.Client(api_key="AIzaSyCOJwHdGezK6s-KZ5Akx9-WC5ZAJ4qWPXU")
 
 @app.route("/")
 def home():
