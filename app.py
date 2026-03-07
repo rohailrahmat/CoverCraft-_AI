@@ -4,8 +4,6 @@ from google import genai
 
 app = Flask(__name__)
 
-GEMINI_API_KEY = "AIzaSyCOJwHdGezK6s-KZ5Akx9-WC5ZAJ4qWPXU"
-
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route("/")
