@@ -3,558 +3,729 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CoverCraft AI — Land Your Dream Job</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<title>ProposalCraft — Win More Upwork Jobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk:wght@400;500;600&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --black: #080808;
+  --upwork-green: #14a800;
+  --upwork-green-dark: #108a00;
+  --upwork-green-light: #e6f4e6;
+  --navy: #001e00;
   --white: #ffffff;
-  --gray-50: #fafafa;
-  --gray-100: #f4f4f5;
-  --gray-200: #e4e4e7;
-  --gray-400: #a1a1aa;
-  --gray-600: #52525b;
-  --gray-800: #27272a;
-  --gray-900: #18181b;
-  --accent: #e8ff47;
-  --accent-dim: rgba(232,255,71,0.08);
-  --radius: 4px;
+  --off-white: #f7f9f7;
+  --gray-50: #f2f7f2;
+  --gray-100: #e8f0e8;
+  --gray-200: #d5e3d5;
+  --gray-400: #8a9e8a;
+  --gray-600: #5a6e5a;
+  --gray-800: #2d3e2d;
+  --text: #1a2e1a;
+  --border: #dde8dd;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'Geist', sans-serif;
-  font-weight: 400;
+  background: var(--off-white);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--black); }
-::-webkit-scrollbar-thumb { background: var(--gray-800); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 3px; }
 
-/* ── NAV ── */
+/* NAV */
 .nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 48px;
-  background: rgba(8,8,8,0.85);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .nav-logo {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--white);
-}
-
-.nav-logo span { color: var(--accent); }
-
-.nav-center {
   display: flex;
   align-items: center;
-  gap: 6px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  gap: 10px;
 }
 
-.nav-step {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--gray-600);
-  letter-spacing: 0.04em;
-  padding: 4px 0;
-}
-
-.nav-step.done { color: var(--gray-400); }
-
-.nav-step-dot {
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  border: 1px solid var(--gray-800);
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  background: var(--upwork-green);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  color: var(--gray-600);
 }
 
-.nav-step.done .nav-step-dot {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--black);
+.nav-logo-mark svg {
+  width: 18px; height: 18px;
+  fill: white;
 }
 
-.nav-divider {
-  width: 24px;
-  height: 1px;
-  background: var(--gray-800);
+.nav-logo-text {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
 }
+
+.nav-logo-text span { color: var(--upwork-green); }
 
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
-.live-dot {
+.nav-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--upwork-green);
+  background: var(--upwork-green-light);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.nav-stat {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-600);
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--gray-400);
-  letter-spacing: 0.04em;
+  gap: 6px;
 }
 
-.live-dot::before {
+.nav-stat::before {
   content: '';
   width: 6px; height: 6px;
-  background: #22c55e;
+  background: var(--upwork-green);
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
-  animation: livePulse 2s infinite;
+  animation: blink 2s infinite;
 }
 
-@keyframes livePulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.15); }
-  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.05); }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
+  background: linear-gradient(135deg, var(--navy) 0%, #0d2b0d 50%, #1a3d1a 100%);
+  padding: 80px 48px 90px;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.hero-grid {
+.hero-dots {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  background-image: radial-gradient(rgba(20,168,0,0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
 }
 
 .hero-glow {
   position: absolute;
-  top: 20%; left: 50%;
-  transform: translateX(-50%);
-  width: 700px; height: 400px;
-  background: radial-gradient(ellipse, rgba(232,255,71,0.04) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(20,168,0,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .hero-inner {
-  max-width: 860px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
+
+.hero-left {}
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 32px;
-}
-
-.hero-eyebrow-line {
-  width: 28px;
-  height: 1px;
-  background: var(--accent);
-  opacity: 0.5;
+  color: var(--upwork-green);
+  background: rgba(20,168,0,0.12);
+  border: 1px solid rgba(20,168,0,0.25);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
 }
 
 .hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(52px, 7vw, 96px);
-  font-weight: 300;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  margin-bottom: 28px;
-}
-
-.hero h1 strong {
-  font-weight: 700;
+  font-family: 'Lora', serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .hero h1 em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--upwork-green);
 }
 
 .hero-sub {
-  font-size: 16px;
-  font-weight: 300;
-  color: var(--gray-400);
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
   line-height: 1.8;
-  max-width: 500px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
-.hero-cta {
-  display: inline-flex;
+.hero-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-feature {
+  display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--accent);
-  color: var(--black);
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 14px 28px;
-  border-radius: var(--radius);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: none;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
 }
 
-.hero-cta:hover {
-  background: #f0ff6e;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(232,255,71,0.2);
-}
-
-.hero-metrics {
-  position: absolute;
-  bottom: 60px;
-  right: 48px;
+.feature-check {
+  width: 20px; height: 20px;
+  background: rgba(20,168,0,0.2);
+  border: 1px solid rgba(20,168,0,0.4);
+  border-radius: 50%;
   display: flex;
-  gap: 48px;
-  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.metric {
-  text-align: right;
+.feature-check svg {
+  width: 10px; height: 10px;
+  stroke: var(--upwork-green);
 }
 
-.metric-num {
-  font-family: 'Fraunces', serif;
-  font-size: 40px;
+/* HERO CARD */
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-card-label {
+  font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+
+.sample-proposal {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.9;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  border-left: 2px solid var(--upwork-green);
+  padding-left: 16px;
+}
+
+.hero-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-card-stat {
+  text-align: center;
+}
+
+.hero-card-num {
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  display: block;
   line-height: 1;
-  color: var(--white);
   margin-bottom: 4px;
 }
 
-.metric-label {
+.hero-card-text {
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gray-600);
+  color: rgba(255,255,255,0.35);
 }
 
-/* ── APP SECTION ── */
-.app-section {
-  padding: 100px 48px;
-  max-width: 1200px;
+/* MAIN SECTION */
+.main {
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 64px 48px 100px;
 }
 
 .section-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 48px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 40px;
 }
 
-.section-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gray-600);
+  color: var(--upwork-green);
   margin-bottom: 8px;
 }
 
 .section-title {
-  font-family: 'Fraunces', serif;
-  font-size: 32px;
-  font-weight: 300;
+  font-family: 'Lora', serif;
+  font-size: 28px;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--white);
+  color: var(--text);
 }
 
-.section-title strong { font-weight: 700; }
-
-/* ── FORM GRID ── */
-.form-grid {
+/* FORM LAYOUT */
+.form-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* INPUT CARDS */
+.input-stack {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  margin-bottom: 16px;
 }
 
-/* ── INPUT PANELS ── */
-.panel {
-  background: var(--gray-900);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
+.input-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
-  transition: border-color 0.2s ease;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.panel:focus-within {
-  border-color: rgba(232,255,71,0.2);
+.input-card:focus-within {
+  border-color: var(--upwork-green);
+  box-shadow: 0 0 0 3px rgba(20,168,0,0.08), var(--shadow);
 }
 
-.panel-header {
+.input-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--gray-50);
+  background: var(--gray-50);
 }
 
-.panel-title-group {
+.input-card-left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.panel-icon {
-  width: 28px; height: 28px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
+.input-icon {
+  width: 30px; height: 30px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gray-400);
 }
 
-.panel-icon svg {
+.input-icon svg {
   width: 14px; height: 14px;
+  stroke: var(--upwork-green);
 }
 
-.panel-title {
+.input-label {
   font-size: 13px;
-  font-weight: 600;
-  color: var(--white);
+  font-weight: 700;
+  color: var(--text);
 }
 
-.panel-hint {
+.input-sublabel {
   font-size: 11px;
-  color: var(--gray-600);
-  letter-spacing: 0.02em;
+  color: var(--gray-400);
+  margin-top: 1px;
 }
 
-.char-badge {
+.input-badge {
   font-size: 10px;
-  font-weight: 500;
-  color: var(--gray-600);
-  background: rgba(255,255,255,0.04);
+  font-weight: 600;
+  color: var(--gray-400);
+  background: white;
+  border: 1px solid var(--border);
   padding: 3px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   font-variant-numeric: tabular-nums;
 }
 
-textarea {
+textarea, input[type="text"] {
   width: 100%;
-  background: transparent;
+  background: white;
   border: none;
-  color: var(--white);
-  font-family: 'Geist', sans-serif;
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
-  font-weight: 300;
-  padding: 20px;
+  font-weight: 400;
+  padding: 18px;
   resize: none;
   outline: none;
   line-height: 1.8;
 }
 
-textarea::placeholder {
-  color: var(--gray-800);
-  font-weight: 300;
+textarea::placeholder, input::placeholder {
+  color: #c0ccc0;
+  font-weight: 400;
 }
 
-#job_description { height: 220px; }
-#skills { height: 160px; }
+#job_post { height: 200px; }
+#freelancer_skills { height: 130px; }
 
-/* ── GENERATE BUTTON ── */
-.generate-row {
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.input-half {
+  padding: 14px 18px;
+  border-right: 1px solid var(--gray-50);
+}
+
+.input-half:last-child { border-right: none; }
+
+.input-half-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+}
+
+input[type="text"] {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: transparent;
+}
+
+/* SIDEBAR */
+.sidebar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 16px;
+  position: sticky;
+  top: 80px;
+}
+
+/* GENERATE CARD */
+.generate-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.generate-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.generate-card-sub {
+  font-size: 12px;
+  color: var(--gray-400);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .generate-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--accent);
-  color: var(--black);
-  font-family: 'Geist', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 14px 32px;
-  border-radius: var(--radius);
+  width: 100%;
+  padding: 16px;
+  background: var(--upwork-green);
   border: none;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   cursor: pointer;
   transition: all 0.2s ease;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .generate-btn svg {
-  width: 15px; height: 15px;
+  width: 16px; height: 16px;
 }
 
 .generate-btn:hover {
-  background: #f0ff6e;
+  background: var(--upwork-green-dark);
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(232,255,71,0.2);
+  box-shadow: 0 6px 24px rgba(20,168,0,0.25);
 }
 
 .generate-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
-.generate-hint {
-  font-size: 11px;
-  color: var(--gray-600);
-  line-height: 1.6;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.generate-hint svg {
-  width: 13px; height: 13px;
-  flex-shrink: 0;
-  color: var(--gray-600);
-}
-
-/* ── LOADING ── */
-.loading-panel {
-  display: none;
-  background: var(--gray-900);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 80px 40px;
-  text-align: center;
-  margin-top: 16px;
-}
-
-.loading-panel.visible { display: block; }
-
-.waveform {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  height: 48px;
-  margin-bottom: 24px;
-}
-
-.wave-bar {
-  width: 3px;
-  background: var(--accent);
-  border-radius: 2px;
-  animation: wave 1.4s ease-in-out infinite;
-}
-
-.wave-bar:nth-child(1)  { animation-delay: 0.0s; }
-.wave-bar:nth-child(2)  { animation-delay: 0.1s; }
-.wave-bar:nth-child(3)  { animation-delay: 0.2s; }
-.wave-bar:nth-child(4)  { animation-delay: 0.3s; }
-.wave-bar:nth-child(5)  { animation-delay: 0.4s; }
-.wave-bar:nth-child(6)  { animation-delay: 0.3s; }
-.wave-bar:nth-child(7)  { animation-delay: 0.2s; }
-.wave-bar:nth-child(8)  { animation-delay: 0.1s; }
-.wave-bar:nth-child(9)  { animation-delay: 0.0s; }
-
-@keyframes wave {
-  0%, 100% { height: 6px; opacity: 0.3; }
-  50% { height: 40px; opacity: 1; }
-}
-
-.loading-label {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--white);
-  margin-bottom: 8px;
-}
-
-.loading-sub {
-  font-size: 12px;
-  color: var(--gray-600);
-  letter-spacing: 0.04em;
-}
-
-/* ── OUTPUT ── */
-.output-panel {
-  display: none;
-  background: var(--gray-900);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 16px;
-  animation: fadeSlide 0.5s ease;
-}
-
-.output-panel.visible { display: block; }
-
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.output-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  background: rgba(255,255,255,0.02);
-}
-
-.output-toolbar-left {
+.generate-divider {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: 16px 0;
+}
+
+.generate-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.generate-divider-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+.tone-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tone-option {
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+  background: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.tone-option:hover {
+  border-color: var(--upwork-green);
+  color: var(--upwork-green);
+  background: var(--upwork-green-light);
+}
+
+.tone-option.selected {
+  border-color: var(--upwork-green);
+  color: var(--upwork-green);
+  background: var(--upwork-green-light);
+}
+
+/* TIPS CARD */
+.tips-card {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.tips-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--upwork-green);
+  margin-bottom: 16px;
+}
+
+.tip-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.tip-item:last-child { margin-bottom: 0; }
+
+.tip-dot {
+  width: 5px; height: 5px;
+  background: var(--upwork-green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.tip-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* LOADING */
+.loading-wrap {
+  display: none;
+  margin-top: 24px;
+}
+
+.loading-wrap.visible { display: block; }
+
+.loading-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.loading-icon {
+  width: 56px; height: 56px;
+  background: var(--upwork-green-light);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.loading-icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--upwork-green);
+  animation: spinSlow 2s linear infinite;
+}
+
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+.loading-title {
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.loading-steps {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.loading-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.loading-step-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  animation: stepPulse 1.5s ease-in-out infinite;
+}
+
+.loading-step:nth-child(1) .loading-step-dot { animation-delay: 0s; }
+.loading-step:nth-child(2) .loading-step-dot { animation-delay: 0.5s; }
+.loading-step:nth-child(3) .loading-step-dot { animation-delay: 1s; }
+
+@keyframes stepPulse {
+  0%, 100% { background: var(--gray-200); transform: scale(1); }
+  50% { background: var(--upwork-green); transform: scale(1.4); }
+}
+
+/* OUTPUT */
+.output-wrap {
+  display: none;
+  margin-top: 24px;
+  animation: slideIn 0.4s ease;
+}
+
+.output-wrap.visible { display: block; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.output-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.output-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .output-status {
@@ -562,177 +733,215 @@ textarea::placeholder {
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #22c55e;
+  color: var(--upwork-green);
 }
 
 .output-status::before {
   content: '';
-  width: 5px; height: 5px;
-  background: #22c55e;
+  width: 6px; height: 6px;
+  background: var(--upwork-green);
   border-radius: 50%;
 }
 
-.output-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--white);
+.output-score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
 }
 
-.toolbar-actions {
+.score-bar {
+  display: flex;
+  gap: 2px;
+}
+
+.score-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--upwork-green);
+}
+
+.score-dot.empty { background: var(--gray-200); }
+
+.output-actions {
   display: flex;
   gap: 8px;
 }
 
-.tool-btn {
+.action-btn {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   padding: 8px 16px;
-  border-radius: var(--radius);
-  font-family: 'Geist', sans-serif;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
   border: none;
 }
 
-.tool-btn svg { width: 13px; height: 13px; }
+.action-btn svg { width: 13px; height: 13px; }
 
-.btn-secondary {
-  background: rgba(255,255,255,0.05);
-  color: var(--gray-400);
-  border: 1px solid rgba(255,255,255,0.06) !important;
+.btn-outline {
+  background: white;
+  color: var(--gray-600);
+  border: 1px solid var(--border) !important;
 }
 
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-}
+.btn-outline:hover { border-color: var(--upwork-green) !important; color: var(--upwork-green); }
 
-.btn-primary {
-  background: var(--white);
-  color: var(--black);
-}
-
-.btn-primary:hover {
-  background: var(--gray-100);
-  transform: translateY(-1px);
-}
-
-.btn-primary.copied {
-  background: #22c55e;
+.btn-green {
+  background: var(--upwork-green);
   color: white;
 }
 
-.letter-output {
+.btn-green:hover { background: var(--upwork-green-dark); }
+.btn-green.copied { background: #059669; }
+
+.proposal-body {
   padding: 40px 48px;
   font-size: 14px;
-  font-weight: 300;
   line-height: 2;
-  color: #d4d4d8;
+  color: #374151;
   white-space: pre-wrap;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
 }
 
-/* ── FEATURES ── */
-.features-section {
-  border-top: 1px solid rgba(255,255,255,0.06);
+.output-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.output-footer-text {
+  font-size: 11px;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.word-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+  background: white;
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* WHY SECTION */
+.why-section {
+  background: white;
+  border-top: 1px solid var(--border);
   padding: 80px 48px;
-  max-width: 1200px;
+}
+
+.why-inner {
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.features-grid {
+.why-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
   margin-top: 48px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.feature-cell {
-  background: var(--black);
+.why-cell {
+  background: white;
   padding: 32px 28px;
-  transition: background 0.2s ease;
+  transition: background 0.2s;
 }
 
-.feature-cell:hover { background: var(--gray-900); }
+.why-cell:hover { background: var(--gray-50); }
 
-.feature-icon-wrap {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
+.why-icon {
+  width: 40px; height: 40px;
+  background: var(--upwork-green-light);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  color: var(--accent);
 }
 
-.feature-icon-wrap svg { width: 16px; height: 16px; }
+.why-icon svg {
+  width: 18px; height: 18px;
+  stroke: var(--upwork-green);
+}
 
-.feature-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--white);
+.why-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
   margin-bottom: 8px;
 }
 
-.feature-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--gray-600);
+.why-desc {
+  font-size: 13px;
+  color: var(--gray-400);
   line-height: 1.7;
+  font-weight: 400;
 }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
-  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--navy);
   padding: 36px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 100%;
 }
 
 .footer-logo {
-  font-family: 'Fraunces', serif;
   font-size: 16px;
-  font-weight: 700;
-  color: var(--white);
+  font-weight: 800;
+  color: white;
   letter-spacing: -0.02em;
 }
 
-.footer-logo span { color: var(--accent); }
+.footer-logo span { color: var(--upwork-green); }
 
-.footer-copy {
+.footer-note {
   font-size: 11px;
-  color: var(--gray-600);
-  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.3);
+  font-weight: 500;
 }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .nav { padding: 0 24px; }
-  .nav-center { display: none; }
-  .hero { padding: 100px 24px 60px; }
-  .hero-metrics { position: static; margin-top: 48px; justify-content: flex-start; }
-  .app-section { padding: 60px 24px; }
-  .form-grid { grid-template-columns: 1fr; }
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .generate-row { flex-direction: column; align-items: flex-start; }
-  .generate-btn { width: 100%; justify-content: center; }
-  .letter-output { padding: 28px 24px; }
+  .hero { padding: 60px 24px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card { display: none; }
+  .main { padding: 48px 24px 80px; }
+  .form-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-section { padding: 60px 24px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
-  .features-section { padding: 60px 24px; }
+  .input-row { grid-template-columns: 1fr; }
+  .input-half { border-right: none; border-bottom: 1px solid var(--gray-50); }
 }
 </style>
 </head>
@@ -740,231 +949,350 @@ footer {
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">Cover<span>Craft</span></div>
-  <div class="nav-center">
-    <div class="nav-step done">
-      <div class="nav-step-dot">1</div>
-      Job Description
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.543-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+      </svg>
     </div>
-    <div class="nav-divider"></div>
-    <div class="nav-step done">
-      <div class="nav-step-dot">2</div>
-      Your Skills
-    </div>
-    <div class="nav-divider"></div>
-    <div class="nav-step done">
-      <div class="nav-step-dot">3</div>
-      Generate
-    </div>
+    <div class="nav-logo-text">Proposal<span>Craft</span></div>
   </div>
   <div class="nav-right">
-    <div class="live-dot">Free to use</div>
+    <div class="nav-stat">AI Powered</div>
+    <div class="nav-tag">Free to Use</div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
+  <div class="hero-dots"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      AI Cover Letter Generator
+    <div class="hero-left">
+      <div class="hero-eyebrow">Built for Upwork Freelancers</div>
+      <h1>Write proposals that<br><em>win clients</em> on Upwork</h1>
+      <p class="hero-sub">Stop losing jobs to weaker freelancers with better proposals. Our AI writes Upwork-optimized proposals that speak directly to what clients want to hear.</p>
+      <div class="hero-features">
+        <div class="hero-feature">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Matches Upwork's proposal best practices
+        </div>
+        <div class="hero-feature">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Addresses client pain points directly
+        </div>
+        <div class="hero-feature">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Sounds human, not AI-generated
+        </div>
+        <div class="hero-feature">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Generated in under 10 seconds
+        </div>
+      </div>
     </div>
-    <h1>Write cover letters<br>that <em>actually</em><br><strong>get you hired.</strong></h1>
-    <p class="hero-sub">Stop staring at a blank page. Paste any job description, describe your experience, and get a tailored professional cover letter in under 10 seconds.</p>
-    <button class="hero-cta" onclick="document.querySelector('.app-section').scrollIntoView({behavior:'smooth'})">
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      Start Writing Now
-    </button>
-  </div>
-  <div class="hero-metrics">
-    <div class="metric">
-      <div class="metric-num">10s</div>
-      <div class="metric-label">Generation Time</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num">100%</div>
-      <div class="metric-label">Free Forever</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num">AI</div>
-      <div class="metric-label">Powered</div>
+    <div class="hero-card">
+      <div class="hero-card-label">Sample Proposal — Python Developer</div>
+      <div class="sample-proposal">"I noticed you need a Python developer who can build a scalable REST API quickly. I've done exactly this — delivering a similar project for a SaaS client in under 2 weeks, handling 50K+ daily requests. I'd love to walk you through my approach..."</div>
+      <div class="hero-card-footer">
+        <div class="hero-card-stat">
+          <span class="hero-card-num">10s</span>
+          <span class="hero-card-text">To Generate</span>
+        </div>
+        <div class="hero-card-stat">
+          <span class="hero-card-num">100%</span>
+          <span class="hero-card-text">Free</span>
+        </div>
+        <div class="hero-card-stat">
+          <span class="hero-card-num">AI</span>
+          <span class="hero-card-text">Optimized</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- APP -->
-<section class="app-section">
+<!-- MAIN -->
+<section class="main">
   <div class="section-header">
-    <div>
-      <div class="section-label">Generate</div>
-      <div class="section-title">Build your <strong>cover letter</strong></div>
-    </div>
+    <div class="section-eyebrow">Generate Proposal</div>
+    <div class="section-title">Fill in your details below</div>
   </div>
 
-  <div class="form-grid">
+  <div class="form-layout">
+    <div class="input-stack">
 
-    <!-- JOB DESCRIPTION -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title-group">
-          <div class="panel-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <!-- JOB POST -->
+      <div class="input-card">
+        <div class="input-card-header">
+          <div class="input-card-left">
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <div class="input-label">Upwork Job Post</div>
+              <div class="input-sublabel">Paste the full client job description</div>
+            </div>
           </div>
-          <div>
-            <div class="panel-title">Job Description</div>
-            <div class="panel-hint">Paste the full posting</div>
+          <div class="input-badge" id="job_count">0 chars</div>
+        </div>
+        <textarea id="job_post"
+          placeholder="Paste the Upwork job description here. Include everything — the more detail the better the proposal.
+
+Example: Looking for an experienced Python developer to build a REST API for our mobile app. Must have experience with Flask or FastAPI, PostgreSQL, and AWS deployment..."
+          oninput="document.getElementById('job_count').textContent = this.value.length + ' chars'"></textarea>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="input-card">
+        <div class="input-card-header">
+          <div class="input-card-left">
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="input-label">Your Skills & Experience</div>
+              <div class="input-sublabel">What makes you the right person</div>
+            </div>
+          </div>
+          <div class="input-badge" id="skills_count">0 chars</div>
+        </div>
+        <textarea id="freelancer_skills"
+          placeholder="Describe your relevant experience and skills...
+
+Example: 3 years Python development, built 5 REST APIs for SaaS companies, expert in Flask and FastAPI, deployed on AWS, strong with PostgreSQL and MongoDB..."
+          oninput="document.getElementById('skills_count').textContent = this.value.length + ' chars'"></textarea>
+      </div>
+
+      <!-- RATE + EXPERIENCE -->
+      <div class="input-card">
+        <div class="input-card-header">
+          <div class="input-card-left">
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="input-label">Rate & Experience Level</div>
+              <div class="input-sublabel">Optional but improves results</div>
+            </div>
           </div>
         </div>
-        <div class="char-badge" id="jd_count">0 chars</div>
-      </div>
-      <textarea id="job_description"
-        placeholder="Paste the job description here. Include the role, responsibilities, and requirements for the best result."
-        oninput="document.getElementById('jd_count').textContent = this.value.length + ' chars'"></textarea>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title-group">
-          <div class="panel-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="input-row">
+          <div class="input-half">
+            <div class="input-half-label">Your Hourly Rate</div>
+            <input type="text" id="hourly_rate" placeholder="e.g. $25/hr or Fixed $500">
           </div>
-          <div>
-            <div class="panel-title">Your Experience</div>
-            <div class="panel-hint">Skills, background, achievements</div>
+          <div class="input-half">
+            <div class="input-half-label">Years of Experience</div>
+            <input type="text" id="experience" placeholder="e.g. 3 years">
           </div>
         </div>
-        <div class="char-badge" id="skills_count">0 chars</div>
       </div>
-      <textarea id="skills"
-        placeholder="Describe your skills and experience. e.g. 2 years Python, built REST APIs with Flask, strong problem solving skills..."
-        oninput="document.getElementById('skills_count').textContent = this.value.length + ' chars'"></textarea>
+
     </div>
 
-  </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="generate-card">
+        <div class="generate-card-title">Ready to generate?</div>
+        <div class="generate-card-sub">Fill in the job post and your skills above for the best result. Rate and experience are optional.</div>
 
-  <!-- GENERATE ROW -->
-  <div class="generate-row">
-    <button class="generate-btn" onclick="generate()" id="generateBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      <span id="btnText">Generate Cover Letter</span>
-    </button>
-    <div class="generate-hint">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Fill both fields for best results. The more detail you provide, the more tailored your letter will be.
+        <button class="generate-btn" onclick="generate()" id="generateBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span id="btnText">Generate Proposal</span>
+        </button>
+
+        <div class="generate-divider">
+          <div class="generate-divider-line"></div>
+          <div class="generate-divider-text">Tone</div>
+          <div class="generate-divider-line"></div>
+        </div>
+
+        <div class="tone-options">
+          <div class="tone-option selected" onclick="selectTone(this, 'professional')">Professional</div>
+          <div class="tone-option" onclick="selectTone(this, 'confident')">Confident</div>
+          <div class="tone-option" onclick="selectTone(this, 'friendly')">Friendly</div>
+          <div class="tone-option" onclick="selectTone(this, 'concise')">Concise</div>
+        </div>
+      </div>
+
+      <div class="tips-card">
+        <div class="tips-card-title">Winning Proposal Tips</div>
+        <div class="tip-item">
+          <div class="tip-dot"></div>
+          <div class="tip-text">Start with the client's problem, not your skills. Show you understand what they need.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-dot"></div>
+          <div class="tip-text">Keep it under 200 words. Clients skim — make every sentence count.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-dot"></div>
+          <div class="tip-text">Mention one specific detail from their job post. It proves you actually read it.</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-dot"></div>
+          <div class="tip-text">End with a clear question or call to action to invite a reply.</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- LOADING -->
-  <div class="loading-panel" id="loading">
-    <div class="waveform">
-      <div class="wave-bar"></div><div class="wave-bar"></div>
-      <div class="wave-bar"></div><div class="wave-bar"></div>
-      <div class="wave-bar"></div><div class="wave-bar"></div>
-      <div class="wave-bar"></div><div class="wave-bar"></div>
-      <div class="wave-bar"></div>
+  <div class="loading-wrap" id="loading">
+    <div class="loading-card">
+      <div class="loading-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      </div>
+      <div class="loading-title">Writing your winning proposal...</div>
+      <div class="loading-steps">
+        <div class="loading-step">
+          <div class="loading-step-dot"></div>
+          Analysing job
+        </div>
+        <div class="loading-step">
+          <div class="loading-step-dot"></div>
+          Matching skills
+        </div>
+        <div class="loading-step">
+          <div class="loading-step-dot"></div>
+          Writing proposal
+        </div>
+      </div>
     </div>
-    <div class="loading-label">Crafting your cover letter...</div>
-    <div class="loading-sub">Analysing the role, matching your profile, writing something great</div>
   </div>
 
   <!-- OUTPUT -->
-  <div class="output-panel" id="outputPanel">
-    <div class="output-toolbar">
-      <div class="output-toolbar-left">
-        <div class="output-status">Ready</div>
-        <div class="output-title">Your Cover Letter</div>
+  <div class="output-wrap" id="outputWrap">
+    <div class="output-card">
+      <div class="output-header">
+        <div class="output-header-left">
+          <div class="output-status">Proposal Ready</div>
+          <div class="output-score">
+            <div class="score-bar">
+              <div class="score-dot"></div>
+              <div class="score-dot"></div>
+              <div class="score-dot"></div>
+              <div class="score-dot"></div>
+              <div class="score-dot empty"></div>
+            </div>
+            Strong Match
+          </div>
+        </div>
+        <div class="output-actions">
+          <button class="action-btn btn-outline" onclick="generate()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Regenerate
+          </button>
+          <button class="action-btn btn-green" onclick="copyText()" id="copyBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Proposal
+          </button>
+        </div>
       </div>
-      <div class="toolbar-actions">
-        <button class="tool-btn btn-secondary" onclick="generate()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-          Regenerate
-        </button>
-        <button class="tool-btn btn-primary" onclick="copyText()" id="copyBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Letter
-        </button>
+      <div class="proposal-body" id="output_text"></div>
+      <div class="output-footer">
+        <div class="output-footer-text">Ready to paste directly into Upwork</div>
+        <div class="word-count" id="word_count">0 words</div>
       </div>
     </div>
-    <div class="letter-output" id="output_text"></div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features-section">
-  <div class="section-label">Why CoverCraft</div>
-  <div class="section-title" style="margin-top:8px;">Built for job seekers, <strong>not robots.</strong></div>
-  <div class="features-grid">
-    <div class="feature-cell">
-      <div class="feature-icon-wrap">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+<!-- WHY SECTION -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="section-eyebrow">Why ProposalCraft</div>
+    <div class="section-title">Built specifically for Upwork success</div>
+    <div class="why-grid">
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="why-title">Upwork Optimized</div>
+        <div class="why-desc">Every proposal follows Upwork's proven best practices — addressing client pain points, showing relevant experience, and ending with a clear call to action.</div>
       </div>
-      <div class="feature-title">Instant Generation</div>
-      <div class="feature-desc">From blank page to ready-to-send cover letter in under 10 seconds.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="feature-icon-wrap">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="why-title">Instant Generation</div>
+        <div class="why-desc">Stop spending 30 minutes on every proposal. Generate a tailored, professional proposal in under 10 seconds and apply to more jobs faster.</div>
       </div>
-      <div class="feature-title">Fully Tailored</div>
-      <div class="feature-desc">Every letter is matched to the specific job and your unique experience.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="feature-icon-wrap">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="why-title">Sounds Human</div>
+        <div class="why-desc">Clients can spot AI-written proposals immediately. Ours are crafted to sound natural, confident, and genuine — like a top-rated freelancer wrote it.</div>
       </div>
-      <div class="feature-title">Sounds Human</div>
-      <div class="feature-desc">No robotic filler. No placeholder text. Just confident, natural writing.</div>
-    </div>
-    <div class="feature-cell">
-      <div class="feature-icon-wrap">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      </div>
-      <div class="feature-title">Free Forever</div>
-      <div class="feature-desc">No account required. No credit card. No limits. Just write and go.</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Cover<span>Craft</span></div>
-  <div class="footer-copy">Built by Rohail — Powered by Gemini AI</div>
+  <div class="footer-logo">Proposal<span>Craft</span></div>
+  <div class="footer-note">Built by Rohail — Powered by Gemini AI — Free Forever</div>
 </footer>
 
 <script>
-async function generate() {
-  const jobDescription = document.getElementById('job_description').value.trim();
-  const skills = document.getElementById('skills').value.trim();
+let selectedTone = 'professional';
 
-  if (!jobDescription || !skills) {
-    alert('Please fill in both fields to generate your cover letter.');
+function selectTone(el, tone) {
+  document.querySelectorAll('.tone-option').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTone = tone;
+}
+
+async function generate() {
+  const jobPost = document.getElementById('job_post').value.trim();
+  const skills = document.getElementById('freelancer_skills').value.trim();
+  const rate = document.getElementById('hourly_rate').value.trim();
+  const experience = document.getElementById('experience').value.trim();
+
+  if (!jobPost || !skills) {
+    alert('Please fill in the job post and your skills to generate a proposal.');
     return;
   }
 
   const btn = document.getElementById('generateBtn');
   const loading = document.getElementById('loading');
-  const outputPanel = document.getElementById('outputPanel');
+  const outputWrap = document.getElementById('outputWrap');
 
   btn.disabled = true;
   document.getElementById('btnText').textContent = 'Generating...';
   loading.classList.add('visible');
-  outputPanel.classList.remove('visible');
+  outputWrap.classList.remove('visible');
 
   try {
     const res = await fetch('/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ job_description: jobDescription, skills: skills })
+      body: JSON.stringify({
+        job_description: jobPost,
+        skills: skills,
+        rate: rate,
+        experience: experience,
+        tone: selectedTone
+      })
     });
 
     const data = await res.json();
-    document.getElementById('output_text').textContent = data.cover_letter;
+    const text = data.cover_letter;
+    document.getElementById('output_text').textContent = text;
+    document.getElementById('word_count').textContent = text.split(/\s+/).filter(Boolean).length + ' words';
     loading.classList.remove('visible');
-    outputPanel.classList.add('visible');
-    outputPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    outputWrap.classList.add('visible');
+    outputWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   } catch (err) {
     alert('Something went wrong. Please try again.');
@@ -972,17 +1300,17 @@ async function generate() {
   }
 
   btn.disabled = false;
-  document.getElementById('btnText').textContent = 'Generate Cover Letter';
+  document.getElementById('btnText').textContent = 'Generate Proposal';
 }
 
 function copyText() {
   const text = document.getElementById('output_text').textContent;
   navigator.clipboard.writeText(text);
   const btn = document.getElementById('copyBtn');
-  btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
   btn.classList.add('copied');
   setTimeout(() => {
-    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Letter`;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Proposal`;
     btn.classList.remove('copied');
   }, 2500);
 }

@@ -15,16 +15,34 @@ def generate():
     data = request.json
     job_description = data.get("job_description", "")
     skills = data.get("skills", "")
+    rate = data.get("rate", "")
+    experience = data.get("experience", "")
+    tone = data.get("tone", "professional")
 
-    prompt = f"""Write a professional, compelling cover letter for someone applying for the following job.
+    prompt = f"""You are an expert Upwork freelancer who has earned over $500K on the platform. Write a winning Upwork proposal for the following job.
 
-Job Description:
+Job Post:
 {job_description}
 
-Applicant's Skills and Experience:
+Freelancer's Skills and Experience:
 {skills}
 
-Write a complete, ready-to-send cover letter. Make it sound human, confident and professional. Do not use placeholder text like [Your Name] - just write the body of the letter starting from 'Dear Hiring Manager'."""
+{f"Hourly Rate / Budget: {rate}" if rate else ""}
+{f"Years of Experience: {experience}" if experience else ""}
+
+Tone: {tone}
+
+Write a {tone} Upwork proposal that:
+1. Opens with the client's specific problem or need — NOT with "I am a developer" or "I have X years experience"
+2. Shows you understood the job post by referencing specific details from it
+3. Briefly demonstrates relevant experience with a concrete example or result
+4. Mentions the rate/timeline naturally if provided
+5. Ends with a clear, specific question that invites a response
+6. Is between 100-200 words — concise and punchy
+7. Sounds completely human — no buzzwords, no fluff, no AI-speak
+8. Follows Upwork best practices that top-rated freelancers use
+
+Do not start with "Dear" or "Hello". Do not use placeholder text. Write the proposal ready to paste directly into Upwork."""
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
