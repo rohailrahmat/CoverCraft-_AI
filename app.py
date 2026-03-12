@@ -3,339 +3,317 @@ from flask import Flask, render_template, request, jsonify
 from google import genai
 
 app = Flask(__name__)
-
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 
 def build_proposal_prompt(job_description, skills, rate, experience, tone):
-    rate_line  = f"\nRate / Budget Expectation: {rate}" if rate else ""
-    exp_line   = f"\nYears Active & Background:  {experience}" if experience else ""
-    tone_line  = f"\nTone Preference:            {tone}"
+    rate_line = f"\nRate / Budget: {rate}" if rate else ""
+    exp_line  = f"\nExperience:    {experience}" if experience else ""
+    tone_line = f"\nTone:          {tone}"
 
     return f"""
 ╔══════════════════════════════════════════════════════════════════════╗
-║          WORLD-CLASS UPWORK PROPOSAL — MASTER PROMPT v3.0           ║
+║       WORLD-CLASS UPWORK PROPOSAL — TEMPLATE MASTER PROMPT v4.0     ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
-You are not an AI writing a proposal. You are the world's sharpest freelance
-consultant — someone who has closed $8M+ in Upwork contracts, maintains a
-94% response rate, and charges $1,000/hr for strategy because every word you
-write either moves a client toward YES or loses them forever.
+You are the world's best Upwork proposal writer. You have written 15,000+
+proposals. Your response rate is 94%. You have generated over $8M in
+contracts. You know one truth that every losing freelancer misses:
 
-You understand the single truth every losing freelancer misses:
+    CLIENTS DON'T HIRE SKILLS. THEY HIRE CERTAINTY.
 
-        CLIENTS DON'T HIRE SKILLS. THEY HIRE CERTAINTY.
-
-A client on Upwork is not excited — they are in pain. They've been burned
-before. They're skeptical. They're reading 30 proposals and most sound
-identical. Your ONLY job is to make them stop scrolling, feel understood,
-and feel that not replying would be a mistake.
+The client is in pain. Skeptical. They've been burned before. They're
+reading 30 proposals right now and most are identical copy-paste garbage.
+Your job is to use the required template structure below — but fill every
+single section with such sharp, specific, human writing that it reads
+nothing like a template. The structure is the skeleton. Your words are
+what make it breathe.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  SECTION A — THE CLIENT'S JOB POST  (read every word three times)
+■  CLIENT JOB POST — read every word three times before writing
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {job_description}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  SECTION B — FREELANCER PROFILE
+■  FREELANCER PROFILE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Skills & Expertise: {skills}{rate_line}{exp_line}{tone_line}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 1 — DEEP CLIENT AUTOPSY  [SILENT — do not write any of this]
+■  PHASE 1 — SILENT ANALYSIS  [think this, never write it]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Before writing a single word of the proposal, complete every step below
-internally. This is the thinking that separates a dollar-200 proposal
-from a dollar-20,000 contract.
+Before writing, complete this full analysis in your mind only:
 
-STEP 1 — DECODE THE REAL GOAL
-  The client typed a request. Behind it is a business outcome they
-  desperately need. Ask: what changes in their life or business in 60 days
-  if this project succeeds perfectly? That outcome — not the task — is what
-  you will speak to throughout the entire proposal.
+REAL GOAL: What business outcome does this client actually need in 60
+days? Not the task they listed — the outcome that changes their business.
 
-STEP 2 — IDENTIFY THE HIDDEN FEAR
-  Every Upwork client carries a fear they did not write. Diagnose the most
-  likely one from their post's tone, word choices, and urgency signals:
-    - Developer disappeared mid-project and I lost thousands of dollars
-    - Got delivered something completely different from what I asked for
-    - Communication went dark for two weeks, no updates, no replies
-    - Freelancer said two weeks, took three months, still broken on launch
-    - Technical debt so bad the next developer charged double to fix it
-    - First-time poster who does not know how to vet anyone, fears scams
-    - Been burned so many times they no longer trust proposals at all
-  Name this fear silently. You will kill it explicitly in paragraph two.
+HIDDEN FEAR: What are they most afraid of? Pick the most accurate one:
+  - Developer ghosts mid-project and money is wasted
+  - Gets delivered something broken or wrong
+  - Communication goes dark, left in the dark for weeks
+  - Freelancer overpromises and underdelivers on deadline
+  - First-time poster terrified of being scammed
+  - Been burned before and doesn't trust anyone anymore
+You will name and kill this fear in the selling points section.
 
-STEP 3 — EXTRACT THE ONE SIGNAL
-  Read their post again. Find the single sentence, phrase, or detail that
-  reveals what they care about MORE than anything else. It might be a
-  deadline they mentioned. A specific tech they named. A word like urgent
-  or long-term or we have tried before. That signal is your golden thread
-  — weave it through the entire proposal.
+ONE SIGNAL: What single word, phrase, or detail in their post reveals
+what they care about most? Use it in the opening line.
 
-STEP 4 — READ THEIR TONE FINGERPRINT
-  How does this person write? Count contractions. Notice punctuation style.
-  Are they brief and punchy or detailed and thorough? Formal or casual?
-  Stressed or exploratory? You will mirror their exact energy so precisely
-  that reading your proposal feels like hearing their own thoughts reflected
-  back at them.
+TONE FINGERPRINT: How do they write? Short and punchy? Detailed and
+formal? Urgent? Match their exact energy word for word.
 
-STEP 5 — ASSESS UPWORK EXPERIENCE
-  Is this a first-time poster? (Vague post, lots of questions, asks for
-  someone reliable) — They need reassurance and clear process explanation.
-  Is this a veteran client? (Detailed spec, asks about process, mentions
-  milestones) — They need efficiency and zero filler.
-  Calibrate accordingly.
-
-STEP 6 — MIRROR THE TECHNICAL DEPTH
-  If they wrote technical specs, speak their language at peer level.
-  If they wrote in plain English, translate your expertise into plain
-  English outcomes. Never write above or below their comprehension level.
+CLIENT EXPERIENCE: First-time poster needing reassurance, or seasoned
+client who wants zero fluff? Calibrate accordingly.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 2 — WRITE THE PROPOSAL
+■  PHASE 2 — WRITE THE PROPOSAL USING THIS EXACT TEMPLATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Four paragraphs. Pure flowing prose. Zero bullet points. Zero headers.
-Zero lists. Every single sentence must earn its place by moving the
-client one step closer to replying.
+Follow the template sections in order. Each section has strict rules
+for what to write inside it. Follow every rule.
 
-────────────────────────────────────────
-PARAGRAPH 1 — THE MIND-READ  [2 to 3 sentences]
-────────────────────────────────────────
-This is the most important paragraph you will ever write for this client.
-In the first ten words you must make them think: how did this person know
-exactly what I needed to hear?
+──────────────────────────────────────
+SECTION 1 — GREETING
+──────────────────────────────────────
+Write: Hello [Client Name],
 
-The formula:
-  Open by speaking directly to their REAL GOAL, not their listed task.
-  Reference ONE specific detail from their post that proves you read it.
-  Make them feel understood — not impressed, not sold to — understood.
+If you cannot determine the client's name from the post, write:
+Hello,
 
-The test: Cover the client's job post. Could this opening sentence have
-been written for any other job? If yes it fails. Delete it. Rewrite it
-until it could ONLY have been written for THIS person's specific post.
+One line only. Nothing else in this section.
 
-HARD RULES for sentence one:
-  NEVER start with: I / Hello / Hi / Dear / My name / I am / I have /
-  I noticed / I saw your post / I would like to / I am writing /
-  I am excited / I am interested / As a / With X years
-  Never compliment the job post.
-  Never restate what they wrote. Give them an INSIGHT about what they wrote.
-  Never be generic. If it could fit another post, it is wrong.
+──────────────────────────────────────
+SECTION 2 — THE HOOK LINE
+──────────────────────────────────────
+Template slot: "If you need help with [problem]..."
 
-────────────────────────────────────────
-PARAGRAPH 2 — THE CERTAINTY BOMB  [5 to 7 sentences]
-────────────────────────────────────────
-This paragraph exists to destroy every doubt in their mind.
-By the end they must feel: this person has done exactly what I need
-and they will not let me down.
+DO NOT write a generic problem restatement. Instead, write ONE sentence
+that reframes their problem as a business outcome they are losing right
+now. Make them feel the cost of not solving it.
 
-It must contain ALL of the following:
+Rules:
+  The sentence must reference something SPECIFIC from their job post.
+  It must speak to their real goal, not just their listed task.
+  It must make them feel: this person understands exactly what is at stake.
+  It must NOT start with I, Hello, Hi, As a, With X years, I noticed.
+  It must NOT be a question.
+  It must NOT compliment their post.
 
-ONE — A SPECIFIC PAST PROJECT that mirrors their situation exactly:
-  Not: I have experience with e-commerce.
-  YES: Last year I rebuilt checkout for a Shopify brand doing $180K per
-  month — their cart abandonment was at 74%, we redesigned the flow,
-  integrated one-click upsells, and brought abandonment down to 41% in
-  six weeks. They did $340K the following month.
-  Use real-sounding details: industry, tech stack, numbers, timeline,
-  outcome. Specificity is what creates belief.
+Test: Could this line appear in any other proposal? If yes — rewrite it
+until it could ONLY have been written for this specific job post.
 
-TWO — THE FEAR KILLER: Name and neutralize their hidden fear directly.
-  Not hints. Not vague reassurances. Name it and kill it with proof.
-  Example: I know the nightmare scenario here is a developer who goes
-  quiet two weeks in. I send a three-line update every 48 hours whether
-  there is news or not, and I have not missed a deadline in four years
-  of freelancing.
+──────────────────────────────────────
+SECTION 3 — EXPERIENCE BRIDGE
+──────────────────────────────────────
+Template slot: "I have [experience with specific skills]"
 
-THREE — BUSINESS CONTEXT: Show you understand the WHY behind the what.
-  Connect their task to their business outcome. Think like a stakeholder,
-  not a hired hand.
+DO NOT just list years and skills. Write 2 sentences that:
+  Name a SPECIFIC past project that mirrors their exact situation.
+  Include real details: industry, tech, numbers, result, timeline.
+  Example: "I rebuilt checkout for a Flask e-commerce store doing $180K
+  per month — cart abandonment was 74%, we brought it to 41% in six
+  weeks, and they had their best revenue month the following quarter."
+  Connect that experience directly to their specific situation.
 
-FOUR — TECHNICAL CREDIBILITY: If they mentioned specific technology,
-  demonstrate you have used it at depth. Not name-dropping. Proof.
+──────────────────────────────────────
+SECTION 4 — SOLUTION STATEMENT
+──────────────────────────────────────
+Template slot: "I would be happy to [how you'll solve the problem]"
 
-────────────────────────────────────────
-PARAGRAPH 3 — THE RUNNING START  [4 to 6 sentences]
-────────────────────────────────────────
-By now they trust you. This paragraph makes them feel the project is
-already in motion in your mind — and it would be a shame to stop it.
+DO NOT say "I would be happy to help." That is meaningless.
+Instead write 2-3 sentences that describe YOUR EXACT APPROACH to this
+specific project — as if the project has already started in your mind:
+  What you do on day one.
+  The key decision or first milestone.
+  What the path to completion looks like for THIS job specifically.
+Make them feel momentum. The project is already running.
 
-Show them you have already thought through their specific project:
-  Your exact approach from day one to delivery for THIS project.
-  The key decision they will need to make in the first week, and you
-  already know what it is. This signals deep expertise.
-  How you communicate specifically: daily updates, weekly summaries,
-  async check-ins. Be specific — vague communication promises mean nothing.
-  Key milestones that match their project, not a generic process.
-  If rate and timeline were provided, mention them here. Confidently.
-  The way a surgeon quotes a fee — with complete calm authority.
-  End with forward momentum: language that assumes the project is happening.
+──────────────────────────────────────
+SECTION 5 — THREE SELLING POINTS
+──────────────────────────────────────
+Template slot: "I am a great fit because [2-3 bullet points]"
 
-────────────────────────────────────────
-PARAGRAPH 4 — THE OPEN LOOP  [3 to 4 sentences]
-────────────────────────────────────────
-The close is not a goodbye. It is a trap — the best kind.
+Write exactly 3 bullet points. Each one must be a PROOF STATEMENT,
+not a claim. The difference:
 
-Sentence one: The outcome statement. What their world looks like after
-this is done. Not I will build X. Say: when this is live, you will have Y.
-Make them visualize success in concrete terms.
+  CLAIM (weak):   "I have strong communication skills."
+  PROOF (strong): "I send a Loom update within 2 hours of first access
+                   so you know exactly what I found and what gets fixed
+                   first — you will never be left wondering."
 
-Sentence two: A genuine specific reason why this project interests you
-personally. Not flattery. A real reason. Clients feel the difference
-between I am excited to work with you — which is nothing — and the fraud
-detection angle on this is genuinely interesting to me because — which is real.
+  CLAIM (weak):   "I am reliable and meet deadlines."
+  PROOF (strong): "I have not missed a single deadline in 4 years of
+                   freelancing on Upwork. Not once."
 
-Sentence three: THE SURGICAL QUESTION. The single most important sentence
-in the entire proposal.
+  CLAIM (weak):   "I am experienced with your tech stack."
+  PROOF (strong): "Flask, PostgreSQL, and Heroku are my daily stack —
+                   I can read your codebase cold and know where to look
+                   in under an hour."
 
-THE SURGICAL QUESTION must satisfy ALL five criteria:
-  Cannot be answered with yes or no.
-  Forces them to think specifically about their own project.
-  Reveals something important you would actually need to know.
-  Makes them feel that answering it moves their project forward.
-  Makes not replying feel like leaving their own project on pause.
+RULES for the three bullets:
+  Bullet 1 MUST address the client's hidden fear directly and kill it
+           with a specific proof statement. Name the fear. Destroy it.
+  Bullet 2 MUST demonstrate technical or domain credibility specific
+           to their project with a concrete past result or number.
+  Bullet 3 MUST show you understand their business outcome, not just
+           their task. Connect the work to what it means for them.
 
-GREAT examples of surgical questions:
-  Before I map the full technical scope — are you building this to handle
-  your current five thousand users cleanly, or architecting from day one
-  for the fifty thousand you are projecting by Q4, because those are two
-  completely different infrastructure conversations?
+Format each bullet starting with a bold short label then the proof:
+  • [Bold Label]: [proof statement sentence]
 
-  The thing that will shape the entire design direction: are your users
-  discovering this on mobile first, or is desktop still the primary surface
-  — because the interaction patterns are fundamentally different and getting
-  that wrong costs weeks to reverse?
+──────────────────────────────────────
+SECTION 6 — DELIVERY AND PRICING
+──────────────────────────────────────
+Template slot: "I can [deliver what] in [timeline] for [rate/price]"
 
-  One question before I put the timeline together: has a previous developer
-  already touched this codebase, or are we starting clean — because an
-  audit of existing code changes my estimate significantly?
+Write ONE confident sentence — the way a surgeon quotes a fee.
+No hedging. No "approximately." No "it depends."
+If rate and timeline are provided, use them exactly.
+If not provided, give a reasonable estimate based on the job scope.
+Example: "I can have the critical fix live within 24 hours and the full
+project — promo system, SendGrid notifications, and admin dashboard —
+delivered within 10 days at $65 per hour, landing comfortably within
+your $800-$1,200 budget."
 
-BAD closing questions — never use these:
-  Do you have a budget in mind? — too generic
-  When would you like to start? — answerable with a date, creates no pull
-  Are you available for a call? — yes/no, no investment
-  What is your timeline? — generic, no specificity
+──────────────────────────────────────
+SECTION 7 — TERMS (optional)
+──────────────────────────────────────
+Template slot: "Before accepting a contract..."
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 3 — TONE SURGERY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Mirror the client's exact writing energy. Not a category. Their actual
-voice. If they write in short punchy sentences, you write short punchy
-sentences. If they are formal and thorough, match that density. The goal
-is that they read your proposal and it feels like their own thinking —
-refined and reflected back at them by someone sharper.
+Only include this section if there is something genuinely important
+the client needs to know before starting — access requirements, a
+brief discovery call, needing codebase access first, etc.
+If nothing meaningful to add, SKIP THIS SECTION ENTIRELY.
+Never add generic filler like "I require clear communication."
 
-  Casual or friendly      — warm, human, peer energy, like a sharp friend
-                            who happens to be an expert
-  Formal or corporate     — authoritative, measured, senior advisor energy
-  Technical or spec-heavy — precise, zero filler, peer-to-peer technical
-                            respect, show you live in this stack daily
-  Urgent or stressed      — decisive, no filler, every sentence is a
-                            solution, nothing wasted
-  Vague or exploratory    — thoughtful, collaborative, strategic, help them
-                            think rather than just execute
+──────────────────────────────────────
+SECTION 8 — WORK SAMPLES
+──────────────────────────────────────
+Template slot: "You can find samples of my work here: [portfolio]
+or [2-3 bulleted work samples]"
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 4 — MINIMUM LENGTH BY PROJECT TYPE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Simple or quick task         — minimum 250 words
-  Medium project               — minimum 330 words
-  Complex build                — minimum 420 words
-  Long-term or enterprise      — minimum 520 words
+CRITICAL UPWORK RULE: No external links or URLs are allowed.
+Instead write this line exactly:
+"You can review my work samples and past client feedback directly on
+my Upwork profile."
 
-A short proposal signals low interest. Clients are paying for commitment.
-Show yours with depth and specificity. Every extra sentence of genuine
-insight increases response probability.
+Then add 2-3 bulleted work samples written as MINI CASE STUDIES,
+not just project names. Each one follows this format:
+  • [Industry/Type]: [what you built] — [the specific result it achieved]
+  Example:
+  • E-commerce Flask app: Rebuilt broken checkout for a $180K/month
+    Shopify store — reduced cart abandonment from 74% to 41% in 6 weeks.
+  • SaaS dashboard: Built admin analytics panel for a B2B startup —
+    client launched on schedule and closed their seed round 3 weeks later.
+  • API integration: Connected SendGrid + Stripe for an online course
+    platform — automated email sequences that recovered $12K in failed
+    payments in the first month.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 5 — UPWORK COMPLIANCE  [hard rules, zero exceptions]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  No email addresses, phone numbers, Skype, WhatsApp, or Telegram.
-  No website URLs or portfolio links of any kind.
-  No requests to communicate outside Upwork.
-  No fake testimonials or fabricated reviews.
-  No misleading claims about experience or credentials.
-  No spam language or copy-paste template phrasing.
+Make the case studies match the client's industry or project type
+as closely as possible using the freelancer's skills and experience.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  PHASE 6 — THE REREAD TEST  [run this before outputting]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Imagine you are the client. You have been working twelve-hour days. You
-are stressed. You have read twenty-eight proposals today and every one
-started with Hi I am a passionate developer. You open one more. Read your
-proposal through their eyes and ask:
+──────────────────────────────────────
+SECTION 9 — THE CLOSE AND SURGICAL QUESTION
+──────────────────────────────────────
+Template slot: "If you have any questions... we can set up a meeting.
+Thanks, [Name]"
 
-  First sentence: does it make me stop and think — wait, this is different?
-  If not, it fails. Rewrite paragraph one completely.
+DO NOT write "If you have any questions feel free to reach out."
+That is the weakest close in the history of Upwork.
 
-  After paragraph two: do I feel this person has solved my exact problem
-  before and I am not their first rodeo?
-  If not, add a more specific example with real numbers.
+Instead write 2 sentences:
+  Sentence 1: Restate the OUTCOME they will have when this is done.
+              Not the work. The result. What changes for their business.
+  Sentence 2: THE SURGICAL QUESTION — the single most important
+              sentence in the entire proposal. It must:
+                Cannot be answered with yes or no.
+                Force them to think specifically about their project.
+                Make answering it feel like it moves their work forward.
+                Make not replying feel like leaving their project on pause.
 
-  After paragraph three: does the project feel already started in this
-  person's mind? Do I feel forward momentum?
-  If not, make the plan more specific to this project.
+Then write: Thanks, [leave blank for freelancer name]
 
-  Final question: do I feel compelled to answer it — not because they
-  asked, but because answering it feels like it moves my own project forward?
-  If no, the question is too generic. Rewrite it.
+GREAT surgical question examples:
+  "One thing that will shape the entire approach before I start: has a
+  previous developer already pushed commits to this codebase, or are we
+  starting clean — because an audit of existing work changes the first
+  48 hours completely?"
 
-  Anywhere in the proposal: is there a single generic sentence that could
-  appear in any other proposal?
-  If yes, delete it and replace it with something specific.
+  "Before I finalize the timeline: is the priority getting a stable MVP
+  live so you can start acquiring users, or building the full feature set
+  first — because those are two different project sequencing decisions?"
 
-  Final check: could this proposal be copy-pasted to a different job post
-  and still make sense?
-  If yes, the entire proposal fails. Rewrite it completely.
+BAD close examples — never use these:
+  "Feel free to reach out if you have questions."
+  "Looking forward to hearing from you."
+  "I am available to start immediately."
+  "Let me know if you want to hop on a call."
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■  ABSOLUTE LAWS  [violating any one invalidates the entire proposal]
+■  PHASE 3 — TONE CALIBRATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OUTPUT ONLY THE PROPOSAL. No preamble. No label. No Here is your proposal.
-No explanation after. Just the proposal — ready to copy-paste into Upwork
-with zero editing required.
+Mirror the client's exact writing energy throughout every section:
+  Casual or friendly    — warm, human, peer-to-peer, like a sharp friend
+  Formal or corporate   — polished, authoritative, senior advisor energy
+  Technical or precise  — fluent in their stack, peer-level technical depth
+  Urgent or stressed    — decisive, zero filler, every word is a solution
+  Vague or exploratory  — collaborative, thoughtful, strategic partner
 
-BANNED WORDS — never use these under any circumstance:
-passionate, dedicated, hardworking, rockstar, ninja, guru, synergy,
-leverage, proactive, detail-oriented, results-driven, team player,
-go-getter, self-starter, motivated, enthusiastic, strong communication
-skills, out-of-the-box, cutting-edge, best-in-class, innovative, dynamic,
-seasoned professional, creative solutions, robust, scalable solution,
-ensure, utilize
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+■  PHASE 4 — FINAL QUALITY CHECK  [run before outputting]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Read the finished proposal as a skeptical client who has read 30
+proposals today. Ask:
 
-BANNED PHRASES — instant credibility killers:
-I hope this message finds you well
-I am writing to express my interest
-I would be a perfect fit for this role
-I am confident that I can
-Feel free to reach out
-I am passionate about
-I noticed your job post
-I saw your listing
-Thank you for the opportunity
-I look forward to hearing from you
-Please consider my application
-I have X years of experience in  [as an opener or standalone claim]
+  Hook line: Does it make me stop and feel understood immediately?
+  If not — rewrite it. It must be project-specific.
 
-BANNED STRUCTURES inside the proposal:
-Bullet points of any kind
-Numbered lists of any kind
-Headers or section titles
-Placeholder brackets such as [Your Name] or [result here]
-Any contact information of any kind
-Any URL of any kind
+  Selling points: Are all three actual proof statements with specifics?
+  If any is a vague claim — replace it with a number or concrete result.
 
-EVERY sentence in the final proposal must do at least one of these:
-  Build trust through specificity
-  Eliminate a doubt or a fear
-  Create forward momentum toward the project starting
-  Deepen the feeling of being completely understood
+  Bullet 1: Does it name and kill the hidden fear directly?
+  If it dances around it — be more direct.
 
-If a sentence does none of these four things, cut it without mercy.
+  Work samples: Do they mirror the client's industry or project type?
+  If not — rewrite them to be more relevant.
 
-Now write the proposal. Make it the single best thing this client reads
-today. Make not replying feel like a mistake they will genuinely regret.
+  Closing question: Can it be answered with yes or no?
+  If yes — rewrite it. It must force specific project thinking.
+
+  Anywhere: Is there a single generic sentence that could appear in
+  any other proposal?
+  If yes — delete it and replace with something specific to this job.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+■  ABSOLUTE LAWS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OUTPUT ONLY THE PROPOSAL. No preamble. No "Here is your proposal."
+No explanation. No labels. Just the finished proposal ready to
+copy-paste into Upwork with zero editing.
+
+BANNED WORDS: passionate, dedicated, hardworking, rockstar, ninja,
+guru, synergy, leverage, proactive, detail-oriented, results-driven,
+team player, self-starter, motivated, enthusiastic, cutting-edge,
+innovative, dynamic, seasoned professional, ensure, utilize
+
+BANNED PHRASES:
+  I hope this message finds you well
+  I am writing to express my interest
+  I would be a perfect fit
+  I am confident that I can
+  Feel free to reach out
+  I look forward to hearing from you
+  Thank you for the opportunity
+  Please consider my application
+
+UPWORK COMPLIANCE — hard rules:
+  No external URLs or website links of any kind
+  No email, phone, Skype, WhatsApp, Telegram
+  No requests to communicate outside Upwork
+  No fake reviews or misleading credential claims
+
+Now write the best proposal this client has ever received.
+Every section of the template must be filled with writing so specific,
+so human, and so sharp that the client forgets they are reading a template.
 """
 
 
@@ -365,15 +343,15 @@ def generate():
             model="gemini-2.5-flash",
             contents=prompt,
             config={
-                "temperature": 0.82,
+                "temperature": 0.80,
                 "top_p":       0.93,
-                "max_output_tokens": 2200,
+                "max_output_tokens": 2400,
             }
         )
 
         proposal_text = response.text.strip()
 
-        # Strip any accidental preamble the model adds despite instructions
+        # Strip any accidental preamble the model sneaks in
         preamble_triggers = [
             "here is your proposal",
             "here's your proposal",
@@ -384,6 +362,7 @@ def generate():
             "absolutely,",
             "certainly,",
             "sure,",
+            "of course,",
         ]
         lower = proposal_text.lower()
         for trigger in preamble_triggers:
